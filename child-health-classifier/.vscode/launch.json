@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run make_abbreviation_dicts",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/make_abbreviation_dicts.py",
+      "console": "integratedTerminal",
+      "python": "/opt/anaconda3/envs/ml_course/bin/python", 
+      "stopAtEntry": true,
+ 
+      "args": [
+        "--input_csv", "data/raw/Pub_df_make_abbreviation.csv",
+        "--out_original_json", "data/interim/abbreviation_dicts_abs.json",
+        "--out_updated_json", "data/interim/updated_abbreviation_dicts_abs.json"
+      ]
+    }
+  ]
+}

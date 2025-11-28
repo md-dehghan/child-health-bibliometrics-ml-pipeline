@@ -1,0 +1,14 @@
+child-health-classifier/data/**
+!child-health-classifier/data/**/.gitkeep
+
+child-health-classifier/models/**
+child-health-classifier/models/**/.gitkeep
+
+Topic-modeling/data/**
+Topic-modeling/figures/**/.gitkeep
+
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
