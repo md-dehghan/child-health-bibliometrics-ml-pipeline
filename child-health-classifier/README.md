@@ -1,5 +1,5 @@
 # 📘 Child-Health Relevance Classification Pipeline  
-### End-to-end machine learning workflow for classifying bibliometric publications as *child-health relevant* or *not relevant*
+### ML workflow for classifying bibliometric publications as *child-health relevant* or *not relevant*
 
 This repository contains the full computational pipeline used to classify a large corpus of bibliometric publications into **child-health relevant** vs. **not relevant**, using manually annotated data, text preprocessing, and supervised machine learning.
 
@@ -10,15 +10,6 @@ The workflow was developed as part of a manuscript submitted to **The Lancet** a
 ## 🧭 Overview
 
 The pipeline processes raw bibliometric data (titles, abstracts, metadata), generates abbreviation dictionaries, normalizes text, trains a classifier using labeled data, and predicts relevance for all publications.
-
-It is designed to be:
-
-- **Reproducible**
-- **Modular** (each step is a standalone script)
-- **Transparent for peer review**
-- **Scalable** for large Scopus datasets
-
----
 
 # 📂 Project Structure
 
@@ -55,9 +46,7 @@ Must contain:
   (`1 = child-health relevant`, `0 = not relevant`)
 
 - `Pubs_df.csv`  
-  Abstracts used to build abbreviation dictionaries
-
-- Full unlabeled corpus for prediction (e.g., all Scopus records)
+  Abstracts used to build abbreviation dictionaries and corpus for prediction
 
 ### **`data/interim/`**
 Generated automatically:
