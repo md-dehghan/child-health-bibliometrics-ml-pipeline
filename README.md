@@ -32,16 +32,7 @@ topic-modeling/
 │   ├── processed/
 │   │   ├── CHW_pubs_topic_tokens.csv           # prepared tokens for topic modeling
 │   │   └── nmf_topic_search_results.csv        # metrics over different topic numbers
-│   └── topic_model/
-│       ├── nmf_topics_with_coherence_topicn_XX.csv
-│       ├── nmf_topic_summary_topicn_XX.csv
-│       ├── nmf_topic_distributions_topicn_XX.csv
-│       ├── W_merged_topicn_XX.npy
-│       └── H_merged_topicn_XX.npy
+│   └── topic_model      # Topic model results
+
 └── figures/
-    └── topic_model/
-        ├── token_freq_before_filter.png / .svg
-        ├── token_freq_after_filter.png / .svg
-        ├── nmf_reconstruction_error_vs_topics.png / .svg
-        ├── nmf_coherence_vs_topics.png / .svg
-        └── wordcloud_topics_merged_topicn_XX.svg
+    └── topic_model   # Topic model results 
