@@ -86,8 +86,10 @@ This directory should contain two Scopus-derived CSVs:
 ### **`data/interim/`**  
 *(Generated automatically)*
 
-- `abbreviation_dicts_abs.json`  
-- `updated_abbreviation_dicts_abs.json`  
+- `abbreviation_dicts_abs.json`
+  Detected abbreviations extracted directly from the abstracts during preprocessing.
+- `updated_abbreviation_dicts_abs.json`
+A refined version of the abbreviation dictionary where abbreviation variants referring to the same concept have been unified.
 
 Stores abbreviation detection output and cleaned mappings.
 
