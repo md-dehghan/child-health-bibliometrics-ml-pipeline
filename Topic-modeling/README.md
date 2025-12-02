@@ -28,8 +28,8 @@ topic-modeling/
 │   ├── raw/
 │   │   └── CHW_pubs.csv                        # input child-health–relevant data (not in repo)
 │   ├── processed/
-│   │   ├── CHW_pubs_topic_tokens.csv           # prepared tokens for topic modeling
-│   │   └── nmf_topic_search_results.csv        # metrics over different topic numbers
+│   │   ├── CHW_pubs_topic_tokens.csv           # Generated tokens for topic modeling
+│   │   └── nmf_topic_search_results.csv        # Generated metrics over different topic numbers
 │   └── topic_model      # Topic model results
 
 └── figures/
