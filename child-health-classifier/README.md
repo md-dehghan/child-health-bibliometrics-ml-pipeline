@@ -3,8 +3,6 @@
 
 This repository contains the full computational pipeline used to classify a large corpus of bibliometric publications into **child-health relevant** vs. **not relevant**, using manually annotated data, text preprocessing, and supervised machine learning.
 
-The workflow was developed as part of a manuscript submitted to **The Lancet** and relies on TF-IDF feature extraction and XGBoost classification.
-
 ---
 
 ## 🧭 Overview
@@ -36,41 +34,39 @@ project/
 
 # 📦 Data Description
 
-### **`data/raw/`**
-link to the data 
-
-Must contain:
-
-- `Pubs_labeled.csv`  
-  Manually annotated publications with binary labels  
-  (`1 = child-health relevant`, `0 = not relevant`)
-
-- `Pubs_df.csv`  
-  Abstracts used to build abbreviation dictionaries and corpus for prediction
-
-### **`data/interim/`**
-Generated automatically:
-
-- `abbreviation_dicts_abs.json`  
-- `updated_abbreviation_dicts_abs.json`  
-
-These store detected abbreviations and cleaned abbreviation mappings.
-
-### **`data/processed/`**
-Pipeline-generated outputs:
-
-- `Pubs_processed_tokens.csv`  
-  Cleaned and tokenized text  
-- `Pubs_with_predictions.csv`  
-  Final prediction output
-
-### **`models/`**
+⚠️ Important data-sharing notice
+The raw publication data (titles, abstracts, metadata) were retrieved from Elsevier’s Scopus API.
+Under Scopus data-sharing conditions, full abstracts, titles, and metadata cannot be redistributed publicly.
+Therefore:
+data/raw/ is NOT included in this repository
+Only processed tokens, abbreviation dictionaries, and model outputs generated from the Scopus data are included
+Users who want to reproduce the workflow must retrieve the publication metadata themselves using Scopus and the provided EIDs (if you choose to release them)
+data/raw/
+This directory must be created by the user.
+To fully reproduce the pipeline, populate data/raw/ with:
+Pubs_labeled.csv
+Human-annotated publications with binary labels
+(1 = child-health relevant, 0 = not relevant)
+(Labels can be shared — but Scopus metadata cannot)
+Pubs_df.csv
+Publication metadata (title, abstract, journal, subject areas) retrieved by the user from Scopus
+data/interim/
+(Automatically generated — allowed to share)
+abbreviation_dicts_abs.json
+updated_abbreviation_dicts_abs.json
+These contain abbreviation mappings derived from processed text, and do not contain Scopus-restricted metadata.
+data/processed/
+(Safe to share — contains only cleaned tokens and predictions)
+Pubs_processed_tokens.csv
+Tokenized text derived from abstracts
+(No raw abstract text is included)
+Pubs_with_predictions.csv
+Final classifier outputs
+models/
 Contains:
-
-- `child_health_xgb_pipeline.pkl`  
-  Trained TF-IDF + XGBoost model
-- Confusion matrix, ROC curve, classification report, evaluation metrics
-
+child_health_xgb_pipeline.pkl
+Trained TF-IDF + XGBoost pipeline
+Evaluation metrics (confusion matrix, ROC, etc.)
 ---
 
 # 🔧 Pipeline Components
