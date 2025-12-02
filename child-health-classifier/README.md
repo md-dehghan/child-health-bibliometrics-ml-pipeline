@@ -134,8 +134,7 @@ It contains:
 Outputs:
 
 - `abbreviation_dicts_abs.json`  
-- `updated_abbreviation_dicts_abs.json`  (applied some unifying abbrevaition for some expression that are same but abbreviated differenlty in differnet abstract on the abbreviation_dicts_abs) 
-
+- `updated_abbreviation_dicts_abs.json`  
 ---
 
 ## **2. Text processing & tokenization**  
