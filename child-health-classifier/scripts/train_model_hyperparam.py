@@ -35,7 +35,6 @@ from sklearn.metrics import (
     precision_score,
     recall_score,
     f1_score,
-    roc_auc_score,
     confusion_matrix,
     classification_report,
 )
@@ -250,17 +249,12 @@ def train_model_with_hyperparam(
     # 12. Evaluate best model on the held-out test set
     print("\nEvaluating best model on test set...")
     y_pred = best_model.predict(X_test)
-    y_proba = (
-        best_model.predict_proba(X_test)[:, 1]
-        if hasattr(best_model, "predict_proba")
-        else None
-    )
+
 
     accuracy = accuracy_score(y_test, y_pred)
     precision = precision_score(y_test, y_pred, zero_division=0)
     recall = recall_score(y_test, y_pred, zero_division=0)
     f1 = f1_score(y_test, y_pred, zero_division=0)
-    roc_auc = roc_auc_score(y_test, y_proba) if y_proba is not None else float("nan")
     conf_matrix = confusion_matrix(y_test, y_pred)
     cls_report = classification_report(y_test, y_pred, digits=4)
 
@@ -269,7 +263,6 @@ def train_model_with_hyperparam(
     print(f"Precision  : {precision:.4f}")
     print(f"Recall     : {recall:.4f}")
     print(f"F1 Score   : {f1:.4f}")
-    print(f"ROC-AUC    : {roc_auc:.4f}")
     print("\nConfusion Matrix:")
     print(conf_matrix)
     print("\nClassification Report:")
@@ -288,7 +281,6 @@ def train_model_with_hyperparam(
             "precision": [precision],
             "recall": [recall],
             "f1": [f1],
-            "roc_auc": [roc_auc],
             "best_cv_score": [random_search.best_score_],
             "scoring": [scoring],
         }

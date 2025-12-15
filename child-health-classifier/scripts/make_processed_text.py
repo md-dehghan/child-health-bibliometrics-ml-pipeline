@@ -14,7 +14,7 @@ import argparse
 import json
 import re
 from collections import Counter
-from typing import List, Dict, Any
+from typing import List, Dict
 
 import pandas as pd
 import wordninja
@@ -69,9 +69,7 @@ def normalize_text(text: str) -> str:
     return re.sub(r"\s+", " ", str(text).lower().strip())
 
 
-# ---------------------------------------------------------------------
-# Stopwords (you merged NLTK + spaCy in notebook; here we use NLTK only
-# to keep this script simple and dependency-light; you *can* add spaCy if desired.)
+
 # ---------------------------------------------------------------------
 
 nltk_stop_words = set(stopwords.words("english"))

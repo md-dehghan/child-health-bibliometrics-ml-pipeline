@@ -19,7 +19,7 @@ import pandas as pd
 
 
 # ---------------------------------------------------------------------
-# Helpers (same as in train_model.py)
+# Helpers 
 # ---------------------------------------------------------------------
 
 
@@ -97,7 +97,7 @@ def predict_labels(
     df["text"] = make_joined_text_column(df["token_processed_abstracts_ngrams_lower"])
     df["title_join"] = make_joined_text_column(df["token_processed_title_ngrams_lower"])
 
-    # 4. Other columns used by your pipeline (fill if missing)
+    # 4. Other columns used by  pipeline (fill if missing)
     if "journal" not in df.columns:
         df["journal"] = ""
     if "subjectAreas" not in df.columns:
@@ -134,24 +134,18 @@ def predict_labels(
     print("Running predictions...")
     y_pred = pipeline.predict(X)
 
-    # Predicted probability for the positive class, if available
-    if hasattr(pipeline, "predict_proba"):
-        y_proba = pipeline.predict_proba(X)[:, 1]
-    else:
-        y_proba = None
 
     # 7. Build output dataframe
     out_df = df.copy()
     out_df["predicted_relevance"] = y_pred
-    if y_proba is not None:
-        out_df["predicted_relevance_proba"] = y_proba
+
 
     # Make sure EID is present in the output if we had it
     if eid_series is not None and "EID" not in out_df.columns:
         out_df["EID"] = eid_series
 
     # 8. Save predictions
-    out_df = out_df[['EID','predicted_relevance','predicted_relevance_proba']]
+    out_df = out_df[['EID','predicted_relevance']]
     os.makedirs(os.path.dirname(output_csv), exist_ok=True)
     out_df.to_csv(output_csv, index=False)
     print(f"\nSaved predictions to: {output_csv}")

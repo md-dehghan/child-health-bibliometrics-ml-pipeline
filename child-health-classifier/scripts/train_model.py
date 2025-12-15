@@ -221,7 +221,6 @@ def train_model(
     precision = precision_score(y_test, y_pred, zero_division=0)
     recall = recall_score(y_test, y_pred, zero_division=0)
     f1 = f1_score(y_test, y_pred, zero_division=0)
-    roc_auc = roc_auc_score(y_test, y_proba) if y_proba is not None else float("nan")
     conf_matrix = confusion_matrix(y_test, y_pred)
     cls_report = classification_report(y_test, y_pred, digits=4)
 
@@ -230,7 +229,6 @@ def train_model(
     print(f"Precision  : {precision:.4f}")
     print(f"Recall     : {recall:.4f}")
     print(f"F1 Score   : {f1:.4f}")
-    print(f"ROC-AUC    : {roc_auc:.4f}")
     print("\nConfusion Matrix:")
     print(conf_matrix)
     print("\nClassification Report:")
@@ -250,7 +248,6 @@ def train_model(
             "precision": [precision],
             "recall": [recall],
             "f1": [f1],
-            "roc_auc": [roc_auc],
         }
     )
     metrics_df.to_csv(metrics_path, index=False)

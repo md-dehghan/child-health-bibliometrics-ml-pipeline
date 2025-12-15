@@ -17,7 +17,7 @@ from typing import List, Dict, Any
 
 import pandas as pd
 import wordninja
-from fuzzywuzzy import process  # pip install fuzzywuzzy
+from fuzzywuzzy import process  
 
 
 # ---------------------------------------------------------------------
@@ -42,7 +42,7 @@ def apply_wordninja_to_text(text: str) -> str:
 
     processed_tokens = []
     for token in tokens:
-        if len(token) > 20:  # threshold can be adjusted
+        if len(token) > 20:  
             processed_tokens.extend(wordninja.split(token))
         else:
             processed_tokens.append(token)
@@ -105,10 +105,10 @@ def merge_consecutive_single_letters(words: List[str]) -> List[str]:
 
 def process_abbreviations_final_corrected(corpus: pd.Series) -> List[List[Dict[str, Any]]]:
     """
-    Process abbreviations with corrected matching logic to handle combined abbreviations.
+    Process abbreviations with matching logic to handle combined abbreviations.
 
     Args:
-        corpus (pd.Series): Text data (e.g., ninja-processed abstracts).
+        corpus (pd.Series): Text data from an abstract.
 
     Returns:
         list of list of dict: For each text, a list of details dicts.
