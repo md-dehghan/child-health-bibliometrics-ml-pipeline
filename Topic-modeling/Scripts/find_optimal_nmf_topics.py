@@ -3,7 +3,6 @@
 Grid-search over NMF topic numbers and compute:
 - reconstruction error
 - c_v coherence (gensim)
-- silhouette score on document-topic matrix W
 
 Usage:
     python scripts/find_optimal_nmf_topics.py \
@@ -128,19 +127,11 @@ def find_optimal_topics(
         )
         coherence_score = coherence_model.get_coherence()
 
-        # Silhouette score on document-topic weights
-        try:
-            labels = W.argmax(axis=1)
-            silhouette_avg = silhouette_score(W, labels)
-        except Exception:
-            silhouette_avg = np.nan
-
         results.append(
             {
                 "n_topics": n_topics,
                 "reconstruction_error": reconstruction_error,
                 "coherence_score": coherence_score,
-                "silhouette_score": silhouette_avg,
             }
         )
 

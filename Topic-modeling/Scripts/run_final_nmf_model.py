@@ -196,7 +196,7 @@ def plot_word_clouds_for_updated_topics(
 
 
 # ---------------------------------------------------------------------
-# Topic titles mapping (as in your notebook)
+# Topic titles mapping ( Based on manual reviewing  of first 10  keywords of each Topics)
 # ---------------------------------------------------------------------
 
 TITLE_TOPICS = {
@@ -276,7 +276,6 @@ TITLE_TOPICS = {
     "Topic 74": "Placental Function and Fetal Growth",
 }
 
-
 # ---------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------
@@ -340,7 +339,6 @@ def run_final_nmf_model(
     topics_weight_df.to_csv(topics_weight_path, index=False)
     print(f"Saved topics + coherence to: {topics_weight_path}")
 
-    # Simple topic summary (without weights)
     nmf_topic_df = pd.DataFrame(
         {
             "Topic Number": [f"Topic {i + 1}" for i in range(n_topics)],
@@ -374,7 +372,7 @@ def run_final_nmf_model(
     topic_distribution_df.to_csv(doc_topic_path, index=False)
     print(f"Saved document-topic distributions to: {doc_topic_path}")
 
-    # Merge topics as in your notebook
+    # Merge topics based on manual reviewing of Topics
     merge_pairs = [
         [12, 35],
         [11, 70],

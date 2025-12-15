@@ -6,12 +6,10 @@ Prepare token data for topic modeling.
     * token_processed_abstracts_ngrams_lower
     * token_processed_title_ngrams_lower
 - Combines title + abstract tokens
-- Applies sequence-based replacements (theory_mind, quality_life, MIS)
+- Applies sequence-based replacements 
 - Applies one-to-one token replacements (replacements dict)
 - Removes rare/common/extra tokens
 - Saves a processed CSV with:
-    * filtered_token_processed_abstracts_title_ngrams
-    * filtered_2_token_processed_abstracts_title_ngrams
     * filtered_3_token_processed_abstracts_title_ngrams
 - Saves pre- and post-filter token frequency plots.
 
@@ -32,6 +30,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from typing import List
 
 # ---------------------------------------------------------------------
 # Constants: white lists and extra words
@@ -119,64 +118,6 @@ def combine_tokens(row) -> List[str]:
     return combined
 
 
-# def apply_sequence_replacements(tokens: List[str]) -> List[str]:
-#     """
-#     Apply sequence-based replacements:
-#     - theory mind / tom -> theory_mind
-#     - quality life / qol -> quality_life
-#     - inflammatory syndrome / MIS + multisystem inflammatory syndrome -> multisystem_inflammatory_syndrome
-#     """
-#     # 1) theory + mind
-#     if any(tokens[i] == "theory" and tokens[i + 1] == "mind" for i in range(len(tokens) - 1)):
-#         tokens = ["theory_mind" if t == "tom" else t for t in tokens]
-#         # collapse sequence
-#         merged = []
-#         i = 0
-#         while i < len(tokens):
-#             if i < len(tokens) - 1 and tokens[i] == "theory" and tokens[i + 1] == "mind":
-#                 merged.append("theory_mind")
-#                 i += 2
-#             else:
-#                 merged.append(tokens[i])
-#                 i += 1
-#         tokens = merged
-
-#     # 2) quality + life
-#     if any(tokens[i] == "quality" and tokens[i + 1] == "life" for i in range(len(tokens) - 1)):
-#         tokens = ["quality_life" if t == "qol" else t for t in tokens]
-#         merged = []
-#         i = 0
-#         while i < len(tokens):
-#             if i < len(tokens) - 1 and tokens[i] == "quality" and tokens[i + 1] == "life":
-#                 merged.append("quality_life")
-#                 i += 2
-#             else:
-#                 merged.append(tokens[i])
-#                 i += 1
-#         tokens = merged
-
-#     # 3) MIS: inflammatory syndrome / multisystem inflammatory syndrome
-#     if any(tokens[i] == "inflammatory" and tokens[i + 1] == "syndrome" for i in range(len(tokens) - 1)):
-#         tokens = ["multisystem_inflammatory_syndrome" if t == "mis" else t for t in tokens]
-
-#     merged = []
-#     i = 0
-#     while i < len(tokens):
-#         if (
-#             i < len(tokens) - 2
-#             and tokens[i] == "multisystem"
-#             and tokens[i + 1] == "inflammatory"
-#             and tokens[i + 2] == "syndrome"
-#         ):
-#             merged.append("multisystem_inflammatory_syndrome")
-#             i += 3
-#         else:
-#             merged.append(tokens[i])
-#             i += 1
-
-#     return merged
-from typing import List
-
 def apply_sequence_replacements(tokens: List[str]) -> List[str]:
     """
     Make this behave like the notebook version:
@@ -226,7 +167,6 @@ def apply_sequence_replacements(tokens: List[str]) -> List[str]:
     # ------------------------------------------------------------------
     if any(tokens[i] == "inflammatory" and tokens[i + 1] == "syndrome"
            for i in range(len(tokens) - 1)):
-        # Replace all 'mis' with 'multisystem_inflammatory_syndrome'
         tokens = [
             "multisystem_inflammatory_syndrome" if t == "mis" else t
             for t in tokens
@@ -295,14 +235,6 @@ def prepare_topic_data(input_csv: str, output_csv: str, fig_dir: str):
     df["filtered_token_processed_abstracts_title_ngrams"] = df.apply(
         combine_tokens, axis=1
     )
-
-    # # Plot initial frequency distribution
-    # plot_token_freq(
-    #     df["filtered_token_processed_abstracts_title_ngrams"],
-    #     out_png=os.path.join(fig_dir, "token_freq_before_filter.png"),
-    #     out_svg=os.path.join(fig_dir, "token_freq_before_filter.svg"),
-    #     title_suffix="Before Filtering",
-    # )
 
     # Compute rare and common tokens
     all_tokens = [
@@ -448,13 +380,10 @@ def prepare_topic_data(input_csv: str, output_csv: str, fig_dir: str):
         "filtered_2_token_processed_abstracts_title_ngrams"
     ].apply(lambda toks: filter_tokens(toks, tokens_to_remove))
 
-    # Plot after removal
-    # plot_token_freq(
-    #     df["filtered_3_token_processed_abstracts_title_ngrams"],
-    #     out_png=os.path.join(fig_dir, "token_freq_after_filter.png"),
-    #     out_svg=os.path.join(fig_dir, "token_freq_after_filter.svg"),
-    #     title_suffix="After Filtering",
-    # )
+    df.drop(columns = ['filtered_token_processed_abstracts_title_ngrams',
+                        'token_processed_abstracts_ngrams_lower','token_processed_title_ngrams_lower',
+                        'filtered_1_token_processed_abstracts_title_ngrams',
+                        'filtered_2_token_processed_abstracts_title_ngrams'], inplace= True)
 
     df.to_csv(output_csv, index=False)
     print(f"Saved processed topic-model data to: {output_csv}")
