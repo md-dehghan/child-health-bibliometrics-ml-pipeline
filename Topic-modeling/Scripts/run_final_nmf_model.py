@@ -196,7 +196,7 @@ def plot_word_clouds_for_updated_topics(
 
 
 # ---------------------------------------------------------------------
-# Topic titles mapping ( Based on manual reviewing  of first 10  keywords of each Topics)
+# Assigning title to Topics ( Based on manual reviewing  of first 10  keywords of each Topics)
 # ---------------------------------------------------------------------
 
 TITLE_TOPICS = {

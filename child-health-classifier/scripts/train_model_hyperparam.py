@@ -137,7 +137,7 @@ def train_model_with_hyperparam(
     df["text"] = make_joined_text_column(df["token_processed_abstracts_ngrams_lower"])
     df["title_join"] = make_joined_text_column(df["token_processed_title_ngrams_lower"])
 
-    # Other columns used by your pipeline (fill if missing)
+    # Other columns used by pipeline (fill if missing)
     if "journal" not in df.columns:
         df["journal"] = ""
     if "subjectAreas" not in df.columns:
@@ -217,7 +217,7 @@ def train_model_with_hyperparam(
         ]
     )
 
-    # 10. Hyperparameter search space (same as notebook)
+    # 10. Hyperparameter search space 
     param_distributions = {
         "classifier__n_estimators": [100,150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650],
         "classifier__max_depth": [3, 4, 5, 6, 7, 8],

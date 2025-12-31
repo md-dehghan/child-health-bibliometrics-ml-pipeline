@@ -132,7 +132,7 @@ def train_model(
     df["text"] = make_joined_text_column(df["token_processed_abstracts_ngrams_lower"])
     df["title_join"] = make_joined_text_column(df["token_processed_title_ngrams_lower"])
 
-    # Other columns used by your pipeline (fill if missing)
+    # Other columns used by  pipeline (fill if missing)
     if "journal" not in df.columns:
         df["journal"] = ""
     if "subjectAreas" not in df.columns:

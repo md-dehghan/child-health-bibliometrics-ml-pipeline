@@ -26,7 +26,7 @@ import spacy
 from typing import List
 
 
-# If needed once per environment:
+# once per environment:
 # nltk.download("punkt")
 # nltk.download("stopwords")
 # nltk.download("averaged_perceptron_tagger")
@@ -53,7 +53,7 @@ def apply_wordninja_to_text(text: str) -> str:
 
 def preprocess_text_basic(text: str) -> str:
     """
-    Same cleaning as before (hyphen, camelCase, slash, 's).
+    Cleaning (hyphen, camelCase, slash, 's).
     """
     if text is None:
         return ""
@@ -104,11 +104,11 @@ def preprocess_abstract(
     updated_abbreviation_dict: Dict[str, str],
 ) -> List[str]:
     """
-    Your full pipeline:
+    Full pipeline:
 
     1. lowercase
-    2. replace full terms with their keys (original dict)
-    3. replace keys with placeholders (updated dict)
+    2. replace full terms with their keys (from original dict)
+    3. replace keys with placeholders (from updated dict)
     4. clean punctuation
     5. tokenize
     6. remove stopwords + single letters

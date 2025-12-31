@@ -70,9 +70,6 @@ def preprocess_text(text: str) -> str:
 
 
 def split_capital_words(full_form: str) -> List[str]:
-    """
-    Keep as in your notebook: currently just splits on spaces.
-    """
     words = full_form.strip().split()
     expanded_words = []
     for word in words:

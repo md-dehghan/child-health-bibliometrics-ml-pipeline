@@ -3,14 +3,14 @@
 Prepare token data for topic modeling.
 
 - Loads a CSV with tokenized columns:
-    * token_processed_abstracts_ngrams_lower
-    * token_processed_title_ngrams_lower
+     token_processed_abstracts_ngrams_lower
+     token_processed_title_ngrams_lower
 - Combines title + abstract tokens
 - Applies sequence-based replacements 
 - Applies one-to-one token replacements (replacements dict)
 - Removes rare/common/extra tokens
 - Saves a processed CSV with:
-    * filtered_3_token_processed_abstracts_title_ngrams
+     filtered_3_token_processed_abstracts_title_ngrams
 - Saves pre- and post-filter token frequency plots.
 
 Usage:
@@ -120,18 +120,16 @@ def combine_tokens(row) -> List[str]:
 
 def apply_sequence_replacements(tokens: List[str]) -> List[str]:
     """
-    Make this behave like the notebook version:
-
     - If there is at least one 'theory' 'mind' sequence:
-        * replace ALL 'tom' -> 'theory_mind'
-        * then merge ONLY THE FIRST 'theory' 'mind' pair into 'theory_mind'
+        replace ALL 'tom' -> 'theory_mind'
+        then merge 'theory' 'mind' pair into 'theory_mind'
     - If there is at least one 'quality' 'life' sequence:
-        * replace ALL 'qol' -> 'quality_life'
-        * then merge ONLY THE FIRST 'quality' 'life' pair into 'quality_life'
+        replace ALL 'qol' -> 'quality_life'
+        then merge 'quality' 'life' pair into 'quality_life'
     - If there is at least one 'inflammatory' 'syndrome' sequence:
-        * replace ALL 'mis' -> 'multisystem_inflammatory_syndrome'
-        * then merge ONLY THE FIRST 'multisystem' 'inflammatory' 'syndrome'
-          triple into 'multisystem_inflammatory_syndrome'
+        replace ALL 'mis' -> 'multisystem_inflammatory_syndrome'
+        then merge 'multisystem' 'inflammatory' 'syndrome'
+        triple into 'multisystem_inflammatory_syndrome'
     """
 
     if not isinstance(tokens, list):

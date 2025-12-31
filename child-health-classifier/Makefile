@@ -33,7 +33,7 @@ $(PROCESSED_TOKENS): $(ABBREV_UPD)
 	    --abbrev_json $(ABBREV_UPD) \
 	    --output_csv $(PROCESSED_TOKENS)
 
-# 3) Train model with default settings
+# 3a) Train model with default settings
 train: $(MODEL_FILE)
 
 $(MODEL_FILE): $(PROCESSED_TOKENS)

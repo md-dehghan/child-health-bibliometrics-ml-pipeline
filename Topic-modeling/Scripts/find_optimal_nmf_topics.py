@@ -28,7 +28,6 @@ from gensim.corpora import Dictionary
 from gensim.models.coherencemodel import CoherenceModel
 from sklearn.decomposition import NMF
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics import silhouette_score
 
 
 # ---------------------------------------------------------------------
