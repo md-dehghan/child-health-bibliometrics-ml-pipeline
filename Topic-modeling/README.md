@@ -21,7 +21,7 @@ topic-modeling/
 ├── Makefile
 ├── requirements.txt       
 ├── scripts/
-│   ├── prepare_topic_model_dat.py
+│   ├── prepare_topic_model_data.py
 │   ├── find_optimal_nmf_topics.py
 │   └── run_final_nmf_model.py
 ├── data/

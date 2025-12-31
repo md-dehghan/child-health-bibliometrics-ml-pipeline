@@ -15,8 +15,6 @@ The workflow:
 4. Trains a supervised classifier using human-labeled publications  
 5. Predicts relevance for the full publication   
 
-All steps are scripted and reproducible.
-
 ---
 
 # 📂 Project Structure
@@ -48,14 +46,7 @@ project/
 
 The raw publication metadata used in this pipeline (titles, abstracts, journals, subject areas) were retrieved from **Elsevier’s Scopus API**.
 
-Under **Scopus data-sharing conditions**, researchers **cannot redistribute**:
-
-- full abstracts  
-- full titles  
-- journal metadata  
-- subject areas  
-
-Therefore, this repository **does not include** any files containing Scopus-restricted metadata.
+Under **Scopus data-sharing conditions**, researchers **cannot redistribute** files containing Scopus-restricted metadata.
 
 ### What **cannot** be shared
 ❌ `data/raw/Pubs_df.csv`  
@@ -166,7 +157,7 @@ Performs:
 ### B. **Hyperparameter tuning (optional)**  
 **`scripts/train_model_hyperparam.py`**
 
-- RandomizedSearchCV (100 sampled configurations)  
+- RandomizedSearchCV   
 - Saves best-performing model
 
 Outputs:
